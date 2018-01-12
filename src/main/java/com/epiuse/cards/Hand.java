@@ -45,8 +45,8 @@ public final class Hand extends ForwardingCollection<Card> {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("");
-        hand.forEach(c -> sb.append(c.toString()).append(" "));
+        final StringBuilder sb = new StringBuilder("Hand");
+        sb.append(hand);
         return sb.toString();
     }
 }

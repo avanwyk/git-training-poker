@@ -48,4 +48,11 @@ public class Deck
     protected Collection<Card> delegate() {
         return cards;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Deck");
+        sb.append(cards);
+        return sb.toString();
+    }
 }

@@ -14,6 +14,7 @@ public class Main {
         Hand hand = Hand.fiveCardDraw(deck);
 
         System.out.println(hand);
+        System.out.println(deck);
 
         System.out.println(outputBreak);
     }
