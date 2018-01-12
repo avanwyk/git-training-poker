@@ -1,8 +1,10 @@
 package com.epiuse.cards;
 
+import com.epiuse.algorithms.ShuffleStrategy;
 import com.epiuse.util.MoreCollectors;
 import com.epiuse.util.MoreStreams;
 import com.google.common.collect.ForwardingCollection;
+import com.google.common.collect.Queues;
 
 import java.util.*;
 import java.util.stream.IntStream;
@@ -14,6 +16,7 @@ public class Deck
         extends ForwardingCollection<Card> {
 
     private static final int DECK_LOWER_BOUND = 0;
+    private static final ShuffleStrategy DEFAULT_STRATEGY = ShuffleStrategy.naiveStrategy();
 
     private final Deque<Card> cards;
 
@@ -26,6 +29,10 @@ public class Deck
     public static Deck emptyDeck() {
         return new Deck(new ArrayDeque<>());
 
+    }
+
+    public static Deck of(Iterable<Card> cards) {
+        return new Deck(Queues.newArrayDeque(cards));
     }
 
     private Deck(Deque<Card> cards) {
@@ -44,6 +51,13 @@ public class Deck
                         .collect(MoreCollectors.toDeque());
     }
 
+    public Deck shuffle() {
+        return shuffle(DEFAULT_STRATEGY);
+    }
+
+    public Deck shuffle(ShuffleStrategy shuffleStrategy) {
+        return shuffleStrategy.shuffle(this);
+    }
 
     protected Collection<Card> delegate() {
         return cards;
@@ -51,8 +65,6 @@ public class Deck
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Deck");
-        sb.append(cards);
-        return sb.toString();
+        return "Deck" + cards;
     }
 }
