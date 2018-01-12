@@ -3,6 +3,7 @@ package com.epiuse.cards;
 import com.epiuse.algorithms.ShuffleStrategy;
 import com.epiuse.util.MoreCollectors;
 import com.epiuse.util.MoreStreams;
+import com.google.common.base.Preconditions;
 import com.google.common.collect.ForwardingCollection;
 import com.google.common.collect.Queues;
 
@@ -36,6 +37,9 @@ public class Deck
     }
 
     private Deck(Deque<Card> cards) {
+        Preconditions.checkNotNull(cards);
+        Preconditions.checkArgument(!cards.isEmpty());
+
         this.cards = cards;
     }
 
