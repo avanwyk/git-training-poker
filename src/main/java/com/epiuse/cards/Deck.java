@@ -16,7 +16,7 @@ public class Deck
         extends ForwardingCollection<Card> {
 
     private static final int DECK_LOWER_BOUND = 0;
-    private static final ShuffleStrategy DEFAULT_STRATEGY = ShuffleStrategy.naiveStrategy();
+    private static final ShuffleStrategy DEFAULT_STRATEGY = ShuffleStrategy.defaultStrategy();
 
     private final Deque<Card> cards;
 
