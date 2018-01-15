@@ -13,8 +13,10 @@ public class Main {
         Deck deck = Deck.fullDeck().shuffle();
 
         Hand hand = Hand.fiveCardDraw(deck);
+        Hand otherHand = Hand.fiveCardDraw(deck);
 
         System.out.println(hand);
+        System.out.println(otherHand);
         System.out.println(deck);
 
         System.out.println(outputBreak);
